@@ -28,7 +28,7 @@ header p {
 }
 
 .content {
-  page-break-inside:avoid; 
+  page-break-inside:avoid;
   page-break-after:auto;
 }
 
@@ -46,9 +46,10 @@ header p {
 }
 
 .content-cat {
-  width:33%;
+  width:30%;
   color:black;
   text-align: left;
+  padding-left: 0;
 }
 
 .content-cat p {
@@ -115,4 +116,8 @@ div.content-text.skills-listing > ul > li:first-child {
 
 .big-text {
   padding-top: 0;
+}
+
+.content.work-content:nth-of-type(n+8) {
+    display: none;
 }
