@@ -25,6 +25,24 @@
                 {{name}}
               </p>
               <p class="subtitle">{{label}}</p>
+              <p class="subtitle">
+                {{#location}}
+                  {{#ifCond address '||' city}}
+                      {{#if address}}
+                        {{address}}
+                      {{/if}}
+                      {{#if city}}
+                        {{city}}
+                        {{#if region}}
+                          , {{region}}
+                        {{/if}}
+                        {{#if postalCode}}
+                           - {{postalCode}}
+                        {{/if}}
+                      {{/if}}
+                  {{/ifCond}}
+                {{/location}}
+              </p>
             </div>
           </div>
         </header>
@@ -57,48 +75,12 @@
               </div>
             </div>
           </section>
-          <!-- LOCATION -->
-          {{#location}}
-            {{#ifCond address '||' city}}
-              <section class="content">
-                <div class="row">
-                  <div class="content-cat">
-                    Localização
-                  </div>
-                  <div class="content-text">
-                    {{#if address}}
-                      <ul>
-                        <li>Endereço</li>
-                        <li>{{address}}</li>
-                      </ul>
-                    {{/if}}
-                    {{#if city}}
-                      {{#if postalCode}}
-                        <ul>
-                          <li>Cidade & CEP</li>
-                          <li>{{city}} - {{postalCode}}</li>
-                        </ul>
-                      {{/if}}
-                    {{/if}}
-                    {{#if region}}
-                      <ul>
-                        <li>Estado</li>
-                        <li>{{region}}</li>
-                      </ul>
-                    {{/if}}
-                  </div>
-                </div>
-              </section>
-            {{/ifCond}}
-          {{/location}}
       {{/resume.basics}}
         <!-- LANGUAGE -->
           {{#if resume.languages.length}}
             <section class="content">
               <div class="row">
-                <div class="content-cat">
-                  Linguas
-                </div>
+                <div class="content-cat">Idiomas</div>
                 <div class="content-text">
                   {{#each resume.languages}}
                     <ul>
@@ -149,7 +131,7 @@
                   <div class="row">
                     <div class="content-cat big-text">
                       {{#if $first}}
-                        Expêriencia de Trabalho
+                        Expêriencia
                       {{/if}}
                       {{#if startDate}}
                         {{#if endDate}}
@@ -241,20 +223,28 @@
                     <div class="content-text work-listing education-listing">
                       {{#if institution}}
                         {{#if $first}}
-                          <p class="heading" style="margin-top:2.35em;">{{institution}}</p>
+                          <p class="heading" style="margin-top:2.35em;">{{institution}}
                         {{else}}
-                          <p class="heading">{{institution}}</p>
+                          <p class="heading">{{institution}}
                         {{/if}}
-                      {{/if}}
-                      {{#if area}}
-                        {{#if gpa}}
-                        <p class="highlight">
-                          {{#if studyType}}
-                          {{studyType}}:
-                          {{/if}}
-                          <i>{{area}} ({{gpa}})</i>
-                        </p>
+                        {{#if area}}
+                          |
+                          <em>
+                            {{#if studyType}}
+                            {{studyType}}:
+                            {{/if}}
+                            </strong>{{area}}{{#if gpa}} ({{gpa}}){{/if}}</strong>
+                          </em>
                         {{/if}}
+                        {{#if courses.length}}
+                          <p>{{#commalist courses}}{{.}}{{/commalist}}</p>
+                          <!-- <ul class="courses">
+                            {{#foreach courses}}
+                              <li class="course">{{.}}</li>
+                            {{/foreach}}
+                          </ul> -->
+                        {{/if}}
+                          </p>
                       {{/if}}
                     </div>
                   </div>
@@ -323,20 +313,28 @@
                   Interesses
                 </div>
                 <div class="content-text skills-listing">
-                  {{#foreach resume.interests}}
-                    <p>
-                      <span class="name">
-                        {{#if name}}
-                          <strong>
-                            {{name}}:
-                          </strong>
-                        {{/if}}
-                      </span>
+                  <p>
+                    {{#foreach resume.interests}}
                       {{#if keywords.length}}
-                        {{#commalist keywords}}{{.}}{{/commalist}}
+                        <span class="name">
+                          {{#if name}}
+                            <strong>
+                              {{name}}
+                            </strong>
+                          {{/if}}
+                        </span></br>
+                        {{#if keywords.length}}
+                          : {{#commalist keywords}}{{.}}{{/commalist}}
+                        {{/if}}
+                      {{else}}
+                          {{#if $first}}
+                            <strong>{{name}}</strong>
+                          {{else}}
+                             , <strong>{{name}}</strong>
+                          {{/if}}
                       {{/if}}
+                    {{/foreach}}
                     </p>
-                  {{/foreach}}
                 </div>
               </div>
             </section>
