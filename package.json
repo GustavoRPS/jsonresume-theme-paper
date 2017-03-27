@@ -1,17 +1,17 @@
 {
-  "name": "jsonresume-theme-paper",
+  "name": "jsonresume-theme-paper-pt-br",
   "version": "0.3.3",
-  "description": "A theme for JSON Resume",
+  "description": "A theme for JSON Resume in Portuguese (Brazil)",
   "author": "Tim Daubenschütz",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TimDaub/jsonresume-theme-paper"
+    "url": "https://github.com/gustavorps/jsonresume-theme-paper-pt-br"
   },
   "license": "MIT",
   "dependencies": {
     "handlebars": "^2.0.0-alpha.4"
   },
-  "homepage": "https://github.com/TimDaub/jsonresume-theme-paper",
+  "homepage": "https://github.com/gustavorps/jsonresume-theme-paper-pt-br",
   "main": "index.js",
   "scripts": {
     "start": "resume serve"
